@@ -2,20 +2,20 @@
 
 var http = require('http');
 var url = require('url');
-// Found a sweet time format on stack overflow by L0j1k
-var currentTime = new Date();
-/* jshint ignore:start */
-var dateTime = "Server time: " + (currentTime.getMonth()+1) + "/"
-                + currentTime.getDate() + "/" 
-                + currentTime.getFullYear() + " @ "  
-                + currentTime.getHours() + ":"  
-                + currentTime.getMinutes() + ":" 
-                + currentTime.getSeconds();
-/* jshint ignore:end */
 
 var server = http.createServer(function(req, res) {
 
 	if(req.url === '/time') {
+		// Found a sweet time format on stack overflow by L0j1k
+		var currentTime = new Date();
+		/* jshint ignore:start */
+		var dateTime = "Server time: " + (currentTime.getMonth()+1) + "/"
+		                + currentTime.getDate() + "/" 
+		                + currentTime.getFullYear() + " @ "  
+		                + currentTime.getHours() + ":"  
+		                + currentTime.getMinutes() + ":" 
+		                + currentTime.getSeconds();
+		/* jshint ignore:end */
 		res.writeHead(200, {'Content-Type': 'application/json'});
 		res.write(JSON.stringify({msg: dateTime})); // jshint ignore:line
 		return res.end();
